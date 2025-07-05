@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Task Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!--Navigacija-->
+      <nav class="navbar">
+        <div class="nav-brand">Task Tracker</div>
+        <ul class="nav-links">
+          <li><a href="#" id="nav-home">Početna</a></li>
+          <li>
+            <a href="#" id="nav-tasks" style="display: none">Moji Zadaci</a>
+          </li>
+          <li>
+            <a href="#" id="nav-add-task" style="display: none"
+              >Dodaj Novi Zadatak</a
+            >
+          </li>
+          <li><a href="#" id="nav-login">Prijava</a></li>
+          <li><a href="#" id="nav-register">Registracija</a></li>
+          <li><a href="#" id="nav-logout" style="display: none">Odjava</a></li>
+        </ul>
+      </nav>
+      <div id="pomodoro-container">
+        <div class="pomodoro-card">
+          <h3>Pomodoro Timer</h3>
+          <p id="timer">25:00</p>
+          <button onclick="startPomodoro()">Start</button>
+        </div>
+      </div>
+
+      <!--Glavni sadržaj-->
+      <main id="content"></main>
+
+      <footer>
+        <p>© 2025 Student Task Tracker</p>
+      </footer>
+    </div>
+
+    <script>
+      // Firebase konfiguracija
+      const firebaseConfig = {
+        apiKey: "AIzaSyA6m6qGoRhGacGdozCzH4nG8yHQh3rkPts",
+        authDomain: "student-task-tracker-a4e06.firebaseapp.com",
+        projectId: "student-task-tracker-a4e06",
+        storageBucket: "student-task-tracker-a4e06.appspot.com",
+        messagingSenderId: "143464624072",
+        databaseURL:
+          "https://student-task-tracker-a4e06-default-rtdb.europe-west1.firebasedatabase.app/",
+        appId: "1:143464624072:web:ba8a2d775ec6a54fb29afd",
+      };
+
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+
+      window.db = firebase.database();
+      window.firebaseRefs = {
+        ref: firebase.database().ref,
+        set: firebase.database().set,
+        push: firebase.database().push,
+        onValue: firebase.database().on,
+        remove: firebase.database().remove,
+        update: firebase.database().update,
+      };
+    </script>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
